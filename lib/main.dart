@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_shuffle/config/navigator_key.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      navigatorKey: NavigatorKey.navigatorKey,
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
