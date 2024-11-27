@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
 
-void main() {
+Future main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  // Initialize storage
+  await GetStorage.init();
+
+  // whenever your initialization is completed, remove the splash screen:
+  FlutterNativeSplash.remove();
+
   runApp(const MyApp());
 }
 
