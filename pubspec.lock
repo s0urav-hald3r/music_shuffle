@@ -113,6 +113,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
+  fadingpageview:
+    dependency: "direct main"
+    description:
+      name: fadingpageview
+      sha256: "740008be1e2fa67dd3b0e87b4ee834d3da237a12e01c2064e1c4a0857855b003"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   fake_async:
     dependency: transitive
     description:

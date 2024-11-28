@@ -1,3 +1,4 @@
+import 'package:fadingpageview/fadingpageview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:music_shuffle/config/constants.dart';
@@ -14,7 +15,7 @@ class OnboardingView extends StatefulWidget {
 }
 
 class _OnboardingViewState extends State<OnboardingView> {
-  final PageController _pageController = PageController(initialPage: 0);
+  FadingPageViewController pageController = FadingPageViewController(0, 4);
   final controller = OnboardingController.instance;
 
   final contentBody = [
@@ -52,89 +53,89 @@ class _OnboardingViewState extends State<OnboardingView> {
     return SizedBox(
       width: size.width,
       height: size.height,
-      child: PageView(
-        controller: _pageController,
-        onPageChanged: (value) {
-          controller.index = value;
-        },
-        physics: const NeverScrollableScrollPhysics(),
-        children: [
-          Stack(children: [
-            Image.asset(onboardingOneImage),
-            Container(
-              width: size.width,
-              height: size.height,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.transparent, blackColor],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: const [0.3, 0.7],
-                ),
-              ),
-            ),
-          ]),
-          SizedBox(
-            width: size.width,
-            height: size.height,
-            child: Stack(
-              children: [
-                Positioned(
-                  left: -size.width / 3,
-                  top: -size.width / 3,
-                  child: Container(
-                    width: size.width * 1.1,
-                    height: size.width * 1.1,
-                    decoration: BoxDecoration(
-                      gradient: RadialGradient(colors: [
-                        const Color(0xFF5016DF).withOpacity(.25),
-                        blackColor
-                      ], stops: const [
-                        0.001,
-                        0.999
-                      ]),
+      child: FadingPageView(
+          controller: pageController,
+          disableWhileAnimating: true,
+          fadeInDuration: const Duration(milliseconds: 500),
+          fadeOutDuration: const Duration(milliseconds: 500),
+          itemBuilder: (context, itemIndex) {
+            return [
+              Stack(children: [
+                Image.asset(onboardingOneImage),
+                Container(
+                  width: size.width,
+                  height: size.height,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Colors.transparent, blackColor],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: const [0.3, 0.7],
                     ),
                   ),
                 ),
-                SafeArea(
-                  child: Column(children: [
-                    Image.asset(onboardingTwoImage),
-                  ]),
+              ]),
+              SizedBox(
+                width: size.width,
+                height: size.height,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: -size.width / 3,
+                      top: -size.width / 3,
+                      child: Container(
+                        width: size.width * 1.1,
+                        height: size.width * 1.1,
+                        decoration: BoxDecoration(
+                          gradient: RadialGradient(colors: [
+                            const Color(0xFF5016DF).withOpacity(.25),
+                            blackColor
+                          ], stops: const [
+                            0.001,
+                            0.999
+                          ]),
+                        ),
+                      ),
+                    ),
+                    SafeArea(
+                      child: Column(children: [
+                        Image.asset(onboardingTwoImage),
+                      ]),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-          SizedBox(
-            width: size.width,
-            height: size.height,
-            child: Stack(children: [
-              Positioned(
-                left: -size.width / 3,
-                top: -size.width / 3,
-                child: Container(
-                  width: size.width * 1.1,
-                  height: size.width * 1.1,
-                  decoration: BoxDecoration(
-                    gradient: RadialGradient(colors: [
-                      const Color(0xFF5016DF).withOpacity(.25),
-                      blackColor
-                    ], stops: const [
-                      0.001,
-                      0.999
+              ),
+              SizedBox(
+                width: size.width,
+                height: size.height,
+                child: Stack(children: [
+                  Positioned(
+                    left: -size.width / 3,
+                    top: -size.width / 3,
+                    child: Container(
+                      width: size.width * 1.1,
+                      height: size.width * 1.1,
+                      decoration: BoxDecoration(
+                        gradient: RadialGradient(colors: [
+                          const Color(0xFF5016DF).withOpacity(.25),
+                          blackColor
+                        ], stops: const [
+                          0.001,
+                          0.999
+                        ]),
+                      ),
+                    ),
+                  ),
+                  SafeArea(
+                    child: Column(children: [
+                      Image.asset(onboardingThreeImage),
                     ]),
                   ),
-                ),
-              ),
-              SafeArea(
-                child: Column(children: [
-                  Image.asset(onboardingThreeImage),
                 ]),
               ),
-            ]),
-          ),
-          const SelectPlatform(),
-        ],
-      ),
+              const SelectPlatform(),
+            ][itemIndex];
+          }),
     );
   }
 
@@ -211,11 +212,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     if (controller.index < 3) {
                       controller.index++;
 
-                      _pageController.animateToPage(
-                        controller.index,
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.linear,
-                      );
+                      pageController.next();
                     } else {
                       NavigatorKey.pushReplacement(const HomeView());
                     }
