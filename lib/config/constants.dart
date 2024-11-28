@@ -38,3 +38,9 @@ const String rate = 'assets/icons/rate.svg';
 const String restore = 'assets/icons/restore.svg';
 const String share = 'assets/icons/share.svg';
 const String terms = 'assets/icons/terms.svg';
+
+// String constants
+const String shareText =
+    'Look what I use to track all my parcels in one place:\nhttps://apps.apple.com/app/id6738089871';
+const String privacyUrl = '';
+const String termsUseUrl = '';
