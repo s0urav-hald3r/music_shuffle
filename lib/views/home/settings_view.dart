@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:music_shuffle/config/constants.dart';
+import 'package:music_shuffle/config/navigator_key.dart';
+import 'package:music_shuffle/views/premium_view.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -45,7 +47,9 @@ class SettingsView extends StatelessWidget {
           }
         }),
         Divider(indent: 56, height: 1, thickness: .25, color: whiteColor),
-        listCard(restore, 'Restore Subscriptions', () {}),
+        listCard(restore, 'Restore Subscriptions', () {
+          NavigatorKey.push(const PremiumView());
+        }),
         Divider(indent: 56, height: 1, thickness: .25, color: whiteColor),
         listCard(terms, 'Terms of Use', () async {
           Uri uri = Uri.parse(termsUseUrl);

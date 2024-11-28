@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
 import 'package:music_shuffle/views/home/settings_view.dart';
+import 'package:music_shuffle/views/premium_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -39,7 +40,12 @@ class HomeView extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-              child: Image.asset(premiumBanner),
+              child: InkWell(
+                onTap: () {
+                  NavigatorKey.push(const PremiumView());
+                },
+                child: Image.asset(premiumBanner),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),

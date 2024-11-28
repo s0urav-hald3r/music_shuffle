@@ -38,6 +38,11 @@ const String rate = 'assets/icons/rate.svg';
 const String restore = 'assets/icons/restore.svg';
 const String share = 'assets/icons/share.svg';
 const String terms = 'assets/icons/terms.svg';
+const String verified = 'assets/icons/verified.svg';
+const String close = 'assets/icons/close.svg';
+const String premium1 = 'assets/icons/premium1.svg';
+const String premium2 = 'assets/icons/premium2.svg';
+const String premium3 = 'assets/icons/premium3.svg';
 
 // String constants
 const String shareText =
