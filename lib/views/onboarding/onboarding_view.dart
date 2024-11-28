@@ -36,7 +36,6 @@ class _OnboardingViewState extends State<OnboardingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: blackColor,
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -46,9 +45,11 @@ class _OnboardingViewState extends State<OnboardingView> {
   }
 
   Widget _buildPageView() {
+    Size size = MediaQuery.of(context).size;
+
     return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
+      width: size.width,
+      height: size.height,
       child: PageView(
         controller: _pageController,
         onPageChanged: (value) {
@@ -59,8 +60,8 @@ class _OnboardingViewState extends State<OnboardingView> {
           Stack(children: [
             Image.asset(onboardingOneImage),
             Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+              width: size.width,
+              height: size.height,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Colors.transparent, blackColor],
@@ -71,14 +72,62 @@ class _OnboardingViewState extends State<OnboardingView> {
               ),
             ),
           ]),
-          SafeArea(
-            child: Column(children: [
-              Image.asset(onboardingTwoImage),
-            ]),
+          SizedBox(
+            width: size.width,
+            height: size.height,
+            child: Stack(
+              children: [
+                Positioned(
+                  left: -size.width / 3,
+                  top: -size.width / 3,
+                  child: Container(
+                    width: size.width * 1.1,
+                    height: size.width * 1.1,
+                    decoration: BoxDecoration(
+                      gradient: RadialGradient(colors: [
+                        const Color(0xFF5016DF).withOpacity(.25),
+                        blackColor
+                      ], stops: const [
+                        0.001,
+                        0.999
+                      ]),
+                    ),
+                  ),
+                ),
+                SafeArea(
+                  child: Column(children: [
+                    Image.asset(onboardingTwoImage),
+                  ]),
+                ),
+              ],
+            ),
           ),
-          SafeArea(
-            child: Column(children: [
-              Image.asset(onboardingThreeImage),
+          SizedBox(
+            width: size.width,
+            height: size.height,
+            child: Stack(children: [
+              Positioned(
+                left: -size.width / 3,
+                top: -size.width / 3,
+                child: Container(
+                  width: size.width * 1.1,
+                  height: size.width * 1.1,
+                  decoration: BoxDecoration(
+                    gradient: RadialGradient(colors: [
+                      const Color(0xFF5016DF).withOpacity(.25),
+                      blackColor
+                    ], stops: const [
+                      0.001,
+                      0.999
+                    ]),
+                  ),
+                ),
+              ),
+              SafeArea(
+                child: Column(children: [
+                  Image.asset(onboardingThreeImage),
+                ]),
+              ),
             ]),
           ),
           const SelectPlatform(),
