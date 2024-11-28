@@ -9,6 +9,7 @@ const String spotifyIcon = 'assets/images/spotify.png';
 const String appleIcon = 'assets/images/apple.png';
 const String youtubeIcon = 'assets/images/youtube.png';
 const String amazoneIcon = 'assets/images/amazone.png';
+const String premiumBanner = 'assets/images/premiumBanner.png';
 
 // Color constants
 Color blackColor = const Color(0xFF000000);
@@ -22,3 +23,9 @@ const LinearGradient elevated = LinearGradient(colors: [
 // Icons constants
 const String vectorLogo = 'assets/icons/vectorLogo.svg';
 const String addIcon = 'assets/icons/addIcon.svg';
+const String settingsIcon = 'assets/icons/settingsIcon.svg';
+const String transfer = 'assets/icons/transfer.svg';
+const String spotify = 'assets/icons/spotify.svg';
+const String apple = 'assets/icons/apple.svg';
+const String amazone = 'assets/icons/amazone.svg';
+const String link = 'assets/icons/link.svg';

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:music_shuffle/config/constants.dart';
+import 'package:music_shuffle/config/navigator_key.dart';
 import 'package:music_shuffle/controllers/onboarding_controller.dart';
+import 'package:music_shuffle/views/home/home_view.dart';
 import 'package:music_shuffle/views/onboarding/select_platform.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -214,6 +216,8 @@ class _OnboardingViewState extends State<OnboardingView> {
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.linear,
                       );
+                    } else {
+                      NavigatorKey.pushReplacement(const HomeView());
                     }
                   },
                 ),
