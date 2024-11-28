@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
+import 'package:music_shuffle/controllers/onboarding_controller.dart';
+import 'package:music_shuffle/views/onboarding/onboarding_view.dart';
 
 Future main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -9,6 +12,9 @@ Future main() async {
 
   // Initialize storage
   await GetStorage.init();
+
+  // Dependency injection
+  Get.lazyPut(() => OnboardingController());
 
   // whenever your initialization is completed, remove the splash screen:
   FlutterNativeSplash.remove();
@@ -22,7 +28,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -31,9 +37,19 @@ class MyApp extends StatelessWidget {
         splashColor: Colors.transparent,
         hoverColor: Colors.transparent,
         highlightColor: Colors.transparent,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
+            minimumSize: Size.zero,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(40),
+            ),
+          ),
+        ),
       ),
       navigatorKey: NavigatorKey.navigatorKey,
-      home: Container(),
+      home: const OnboardingView(),
     );
   }
 }
