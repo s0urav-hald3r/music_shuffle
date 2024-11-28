@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
 import 'package:music_shuffle/controllers/onboarding_controller.dart';
 import 'package:music_shuffle/views/onboarding/onboarding_view.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         fontFamily: 'Archivo',
+        scaffoldBackgroundColor: blackColor,
         splashFactory: NoSplash.splashFactory,
         splashColor: Colors.transparent,
         hoverColor: Colors.transparent,

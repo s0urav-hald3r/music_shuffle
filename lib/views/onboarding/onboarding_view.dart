@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/controllers/onboarding_controller.dart';
+import 'package:music_shuffle/views/onboarding/select_platform.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
@@ -53,6 +54,7 @@ class _OnboardingViewState extends State<OnboardingView> {
         onPageChanged: (value) {
           controller.index = value;
         },
+        physics: const NeverScrollableScrollPhysics(),
         children: [
           Stack(children: [
             Image.asset(onboardingOneImage),
@@ -79,6 +81,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               Image.asset(onboardingThreeImage),
             ]),
           ),
+          const SelectPlatform(),
         ],
       ),
     );
@@ -92,45 +95,48 @@ class _OnboardingViewState extends State<OnboardingView> {
         width: MediaQuery.of(context).size.width,
         child: Obx(
           () => Column(children: [
-            Text(
-              contentBody[controller.index]['title']!,
-              style: TextStyle(
-                fontSize: 36,
-                color: whiteColor,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              contentBody[controller.index]['description']!,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
-                color: whiteColor,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              height: 46,
-              alignment: Alignment.center,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(3, (index) {
-                  return Container(
-                    width: 8,
-                    height: 8,
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: controller.index == index
-                          ? whiteColor
-                          : whiteColor.withOpacity(.4),
-                    ),
-                  );
-                }),
-              ),
-            ),
+            if (controller.index < 3)
+              Column(children: [
+                Text(
+                  contentBody[controller.index]['title']!,
+                  style: TextStyle(
+                    fontSize: 36,
+                    color: whiteColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  contentBody[controller.index]['description']!,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: whiteColor,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 46,
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(3, (index) {
+                      return Container(
+                        width: 8,
+                        height: 8,
+                        margin: const EdgeInsets.symmetric(horizontal: 4),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: controller.index == index
+                              ? whiteColor
+                              : whiteColor.withOpacity(.4),
+                        ),
+                      );
+                    }),
+                  ),
+                ),
+              ]),
             SafeArea(
               top: false,
               child: Container(
@@ -151,13 +157,13 @@ class _OnboardingViewState extends State<OnboardingView> {
                     ),
                   ),
                   onPressed: () {
-                    if (controller.index < 2) {
+                    if (controller.index < 3) {
                       controller.index++;
 
                       _pageController.animateToPage(
                         controller.index,
                         duration: const Duration(milliseconds: 500),
-                        curve: Curves.fastEaseInToSlowEaseOut,
+                        curve: Curves.linear,
                       );
                     }
                   },
