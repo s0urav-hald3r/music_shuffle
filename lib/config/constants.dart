@@ -29,3 +29,12 @@ const String spotify = 'assets/icons/spotify.svg';
 const String apple = 'assets/icons/apple.svg';
 const String amazone = 'assets/icons/amazone.svg';
 const String link = 'assets/icons/link.svg';
+
+/// Setting Page
+const String arrow = 'assets/icons/arrow.svg';
+const String feedback = 'assets/icons/feedback.svg';
+const String privacy = 'assets/icons/privacy.svg';
+const String rate = 'assets/icons/rate.svg';
+const String restore = 'assets/icons/restore.svg';
+const String share = 'assets/icons/share.svg';
+const String terms = 'assets/icons/terms.svg';

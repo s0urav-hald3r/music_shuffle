@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:music_shuffle/config/constants.dart';
+import 'package:music_shuffle/config/navigator_key.dart';
+import 'package:music_shuffle/views/home/settings_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -27,7 +29,12 @@ class HomeView extends StatelessWidget {
                         color: whiteColor,
                       ),
                     ),
-                    SvgPicture.asset(settingsIcon)
+                    InkWell(
+                      onTap: () {
+                        NavigatorKey.push(const SettingsView());
+                      },
+                      child: SvgPicture.asset(settingsIcon),
+                    )
                   ]),
             ),
             Padding(
