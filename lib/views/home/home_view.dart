@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
+import 'package:music_shuffle/views/home/manage_platform_view.dart';
 import 'package:music_shuffle/views/home/settings_view.dart';
 import 'package:music_shuffle/views/premium_view.dart';
 
@@ -60,12 +61,17 @@ class HomeView extends StatelessWidget {
                         color: whiteColor,
                       ),
                     ),
-                    const Text(
-                      'Manage',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFFAE6AEA),
+                    InkWell(
+                      onTap: () {
+                        NavigatorKey.push(const ManagePlatformView());
+                      },
+                      child: const Text(
+                        'Manage',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFAE6AEA),
+                        ),
                       ),
                     ),
                   ]),
