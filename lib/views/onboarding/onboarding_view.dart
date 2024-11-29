@@ -58,8 +58,8 @@ class _OnboardingViewState extends State<OnboardingView> {
       child: FadingPageView(
           controller: pageController,
           disableWhileAnimating: true,
-          fadeInDuration: const Duration(milliseconds: 350),
-          fadeOutDuration: const Duration(milliseconds: 350),
+          fadeInDuration: const Duration(milliseconds: 250),
+          fadeOutDuration: const Duration(milliseconds: 250),
           itemBuilder: (context, itemIndex) {
             return [
               Stack(children: [

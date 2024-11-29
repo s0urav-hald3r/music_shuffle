@@ -10,7 +10,7 @@ class NavigatorKey {
     return navigatorKey.currentState?.push(PageTransition(
       child: route,
       type: PageTransitionType.fade,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 250),
     ));
   }
 
@@ -18,7 +18,7 @@ class NavigatorKey {
     return navigatorKey.currentState?.pushReplacement(PageTransition(
       child: route,
       type: PageTransitionType.fade,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 250),
     ));
   }
 
@@ -27,7 +27,7 @@ class NavigatorKey {
         PageTransition(
           child: route,
           type: PageTransitionType.fade,
-          duration: const Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 250),
         ),
         (route) => false);
   }
