@@ -80,115 +80,147 @@ class HomeView extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-              child: Wrap(runSpacing: 20, spacing: 20, children: [
-                InkWell(
-                  onTap: () {
-                    NavigatorKey.push(const CustomNavbar());
-                  },
-                  child: Container(
-                    width: 170,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF00D95F),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 10),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SvgPicture.asset(spotify),
-                          Text(
-                            'Spotify',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: blackColor,
-                            ),
-                          )
-                        ]),
-                  ),
-                ),
-                Container(
-                  width: 170,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFFFA233B), Color(0xFFFB5C74)],
-                    ),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SvgPicture.asset(apple),
-                        Text(
-                          'Apple Music',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: whiteColor,
+              child: Column(children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(children: [
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          NavigatorKey.push(const CustomNavbar());
+                        },
+                        child: Container(
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF00D95F),
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                        )
-                      ]),
-                ),
-                Container(
-                  width: 170,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFFFFFF),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.asset(youtubeIcon, height: 44),
-                        Text(
-                          'Youtube Music',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: blackColor,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 10),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CircleAvatar(
+                                  radius: 22,
+                                  backgroundColor: Colors.transparent,
+                                  child: SvgPicture.asset(spotify),
+                                ),
+                                Text(
+                                  'Spotify',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                    color: blackColor,
+                                  ),
+                                )
+                              ]),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Container(
+                        height: 100,
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFFFA233B), Color(0xFFFB5C74)],
                           ),
-                        )
-                      ]),
-                ),
-                Container(
-                  width: 170,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF25D2D9),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 10),
+                        child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SvgPicture.asset(amazone),
-                              SvgPicture.asset(link),
+                              SizedBox(
+                                width: 44,
+                                height: 44,
+                                child: SvgPicture.asset(apple),
+                              ),
+                              Text(
+                                'Apple Music',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: whiteColor,
+                                ),
+                              )
                             ]),
-                        Text(
-                          'Amazone Music',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: blackColor,
-                          ),
-                        )
-                      ]),
+                      ),
+                    ),
+                  ]),
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(children: [
+                    Expanded(
+                      child: Container(
+                        height: 100,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 10),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CircleAvatar(
+                                radius: 22,
+                                child: Image.asset(youtubeIcon),
+                              ),
+                              Text(
+                                'Youtube Music',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: blackColor,
+                                ),
+                              )
+                            ]),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Container(
+                        height: 100,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF25D2D9),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 10),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 22,
+                                      child: SvgPicture.asset(amazone),
+                                    ),
+                                    SvgPicture.asset(link),
+                                  ]),
+                              Text(
+                                'Amazone Music',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: blackColor,
+                                ),
+                              )
+                            ]),
+                      ),
+                    ),
+                  ]),
                 ),
               ]),
             ),

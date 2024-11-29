@@ -32,6 +32,10 @@ const String apple = 'assets/icons/apple.svg';
 const String amazone = 'assets/icons/amazone.svg';
 const String link = 'assets/icons/link.svg';
 const String sharpArrow = 'assets/icons/sharpArrow.svg';
+const String spotifyPlatform = 'assets/icons/spotifyPlatform.svg';
+const String youtubePlatform = 'assets/icons/youtubePlatform.svg';
+const String applePlatform = 'assets/icons/applePlatform.svg';
+const String amazonePlatform = 'assets/icons/amazonePlatform.svg';
 
 /// Setting Page
 const String arrow = 'assets/icons/arrow.svg';

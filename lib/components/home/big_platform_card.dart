@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music_shuffle/config/constants.dart';
 
 class BigPlatformCard extends StatelessWidget {
-  final String icon;
+  final Widget icon;
   final String title;
   final String description;
   final Function callBack;
@@ -20,10 +20,7 @@ class BigPlatformCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.all(16),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        CircleAvatar(
-          radius: 32,
-          child: Image.asset(icon),
-        ),
+        icon,
         const SizedBox(width: 20),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(

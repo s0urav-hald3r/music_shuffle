@@ -214,7 +214,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     final cTime = DateTime.now();
                     if (lTapTime == null ||
                         cTime.difference(lTapTime!) >
-                            const Duration(seconds: 1)) {
+                            const Duration(milliseconds: 500)) {
                       lTapTime = cTime;
                       // Your button action here
                       debugPrint("Button tapped");
