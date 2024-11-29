@@ -4,6 +4,7 @@ import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
 import 'package:music_shuffle/views/home/manage_platform_view.dart';
 import 'package:music_shuffle/views/home/settings_view.dart';
+import 'package:music_shuffle/views/home/transferred_view.dart';
 import 'package:music_shuffle/views/premium_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -208,7 +209,9 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                 ]),
-                onPressed: () {},
+                onPressed: () {
+                  NavigatorKey.push(const TransferredView());
+                },
               ),
             ),
           ]),
