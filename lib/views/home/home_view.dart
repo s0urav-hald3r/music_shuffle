@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
+import 'package:music_shuffle/views/home/custom_navbar.dart';
 import 'package:music_shuffle/views/home/manage_platform_view.dart';
 import 'package:music_shuffle/views/home/settings_view.dart';
 import 'package:music_shuffle/views/home/transferred_view.dart';
@@ -80,29 +81,34 @@ class HomeView extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
               child: Wrap(runSpacing: 20, spacing: 20, children: [
-                Container(
-                  width: 170,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF00D95F),
-                    borderRadius: BorderRadius.circular(20),
+                InkWell(
+                  onTap: () {
+                    NavigatorKey.push(const CustomNavbar());
+                  },
+                  child: Container(
+                    width: 170,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF00D95F),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 10),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SvgPicture.asset(spotify),
+                          Text(
+                            'Spotify',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: blackColor,
+                            ),
+                          )
+                        ]),
                   ),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SvgPicture.asset(spotify),
-                        Text(
-                          'Spotify',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: blackColor,
-                          ),
-                        )
-                      ]),
                 ),
                 Container(
                   width: 170,

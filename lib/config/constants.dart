@@ -46,6 +46,11 @@ const String premium1 = 'assets/icons/premium1.svg';
 const String premium2 = 'assets/icons/premium2.svg';
 const String premium3 = 'assets/icons/premium3.svg';
 
+// Bottom nav bar
+const String playlists = 'assets/icons/playlists.svg';
+const String liked = 'assets/icons/liked.svg';
+const String albums = 'assets/icons/albums.svg';
+
 // String constants
 const String shareText =
     'Look what I use to track all my parcels in one place:\nhttps://apps.apple.com/app/id6738089871';

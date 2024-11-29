@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
+import 'package:music_shuffle/controllers/home_controller.dart';
 import 'package:music_shuffle/controllers/onboarding_controller.dart';
 import 'package:music_shuffle/views/onboarding/onboarding_view.dart';
 
@@ -16,6 +17,7 @@ Future main() async {
 
   // Dependency injection
   Get.lazyPut(() => OnboardingController());
+  Get.lazyPut(() => HomeController());
 
   // whenever your initialization is completed, remove the splash screen:
   FlutterNativeSplash.remove();
