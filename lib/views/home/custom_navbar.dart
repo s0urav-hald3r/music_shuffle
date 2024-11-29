@@ -3,6 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/controllers/home_controller.dart';
+import 'package:music_shuffle/views/home/albums_view.dart';
+import 'package:music_shuffle/views/home/liked_view.dart';
+import 'package:music_shuffle/views/home/playlists_view.dart';
 
 class CustomNavbar extends StatelessWidget {
   const CustomNavbar({super.key});
@@ -10,6 +13,13 @@ class CustomNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Obx(() {
+        return const [
+          PlaylistsView(),
+          LikedView(),
+          AlbumsView()
+        ][HomeController.instance.index];
+      }),
       bottomNavigationBar: BottomAppBar(
         color: const Color(0xFF1E1E1E),
         padding: EdgeInsets.zero,
