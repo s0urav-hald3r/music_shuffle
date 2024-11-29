@@ -47,7 +47,7 @@ class TransferredCard extends StatelessWidget {
               SizedBox(
                 width: 28,
                 height: 28,
-                child: Image.asset(spotifyIcon),
+                child: Image.asset(spotifyImage),
               ),
               SizedBox(
                 width: 28,
@@ -57,7 +57,7 @@ class TransferredCard extends StatelessWidget {
               SizedBox(
                 width: 28,
                 height: 28,
-                child: Image.asset(appleIcon),
+                child: Image.asset(appleImage),
               )
             ])
           ]),

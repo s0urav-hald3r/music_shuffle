@@ -78,25 +78,44 @@ class SelectPlatform extends StatelessWidget {
                   ),
                   child: Column(children: [
                     PlatformCard(
-                      icon: spotifyIcon,
+                      icon: CircleAvatar(
+                        radius: 24,
+                        backgroundColor: Colors.transparent,
+                        child: SvgPicture.asset(spotifyPlatform),
+                      ),
                       title: 'Spotify',
                       callBack: () {},
                     ),
                     Divider(height: 0, thickness: .25, color: whiteColor),
                     PlatformCard(
-                      icon: appleIcon,
+                      icon: CircleAvatar(
+                        radius: 24,
+                        backgroundColor: Colors.transparent,
+                        child: Image.asset(appleImage),
+                      ),
                       title: 'Apple Music',
                       callBack: () {},
                     ),
                     Divider(height: 0, thickness: .25, color: whiteColor),
                     PlatformCard(
-                      icon: youtubeIcon,
+                      icon: CircleAvatar(
+                        radius: 24,
+                        backgroundColor: Colors.transparent,
+                        child: Image.asset(youtubeImage),
+                      ),
                       title: 'Youtube Music',
                       callBack: () {},
                     ),
                     Divider(height: 0, thickness: .25, color: whiteColor),
                     PlatformCard(
-                      icon: amazoneIcon,
+                      icon: CircleAvatar(
+                        radius: 24,
+                        backgroundColor: const Color(0xFF25D2D9),
+                        child: CircleAvatar(
+                            radius: 18,
+                            backgroundColor: Colors.transparent,
+                            child: SvgPicture.asset(amazonePlatform)),
+                      ),
                       title: 'Amazone Music',
                       callBack: () {},
                     )

@@ -40,7 +40,7 @@ class ManagePlatformView extends StatelessWidget {
           icon: CircleAvatar(
             radius: 32,
             backgroundColor: whiteColor,
-            child: SvgPicture.asset(applePlatform),
+            child: Image.asset(appleInvImage),
           ),
           title: 'Apple Music',
           description:
@@ -52,7 +52,7 @@ class ManagePlatformView extends StatelessWidget {
           icon: CircleAvatar(
             radius: 32,
             backgroundColor: Colors.transparent,
-            child: SvgPicture.asset(youtubePlatform),
+            child: Image.asset(youtubeImage),
           ),
           title: 'Youtube Music',
           description:

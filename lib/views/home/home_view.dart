@@ -104,7 +104,7 @@ class HomeView extends StatelessWidget {
                                 CircleAvatar(
                                   radius: 22,
                                   backgroundColor: Colors.transparent,
-                                  child: SvgPicture.asset(spotify),
+                                  child: SvgPicture.asset(spotifySvg),
                                 ),
                                 Text(
                                   'Spotify',
@@ -137,7 +137,7 @@ class HomeView extends StatelessWidget {
                               SizedBox(
                                 width: 44,
                                 height: 44,
-                                child: SvgPicture.asset(apple),
+                                child: SvgPicture.asset(appleSvg),
                               ),
                               Text(
                                 'Apple Music',
@@ -171,7 +171,7 @@ class HomeView extends StatelessWidget {
                             children: [
                               CircleAvatar(
                                 radius: 22,
-                                child: Image.asset(youtubeIcon),
+                                child: Image.asset(youtubeImage),
                               ),
                               Text(
                                 'Youtube Music',
@@ -205,7 +205,7 @@ class HomeView extends StatelessWidget {
                                   children: [
                                     CircleAvatar(
                                       radius: 22,
-                                      child: SvgPicture.asset(amazone),
+                                      child: SvgPicture.asset(amazoneSvg),
                                     ),
                                     SvgPicture.asset(link),
                                   ]),
