@@ -11,6 +11,7 @@ const String youtubeIcon = 'assets/images/youtube.png';
 const String amazoneIcon = 'assets/images/amazone.png';
 const String premiumBanner = 'assets/images/premiumBanner.png';
 const String albumArt = 'assets/images/albumArt.png';
+const String thumbnail = 'assets/images/thumbnail.png';
 
 // Color constants
 Color blackColor = const Color(0xFF000000);
@@ -45,6 +46,8 @@ const String close = 'assets/icons/close.svg';
 const String premium1 = 'assets/icons/premium1.svg';
 const String premium2 = 'assets/icons/premium2.svg';
 const String premium3 = 'assets/icons/premium3.svg';
+const String upload = 'assets/icons/upload.svg';
+const String leftArrow = 'assets/icons/leftArrow.svg';
 
 // Bottom nav bar
 const String playlists = 'assets/icons/playlists.svg';

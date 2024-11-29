@@ -18,6 +18,8 @@ class _OnboardingViewState extends State<OnboardingView> {
   FadingPageViewController pageController = FadingPageViewController(0, 4);
   final controller = OnboardingController.instance;
 
+  DateTime? lTapTime;
+
   final contentBody = [
     {
       'title': 'Playlist Transfer',
@@ -209,6 +211,18 @@ class _OnboardingViewState extends State<OnboardingView> {
                     ),
                   ),
                   onPressed: () {
+                    final cTime = DateTime.now();
+                    if (lTapTime == null ||
+                        cTime.difference(lTapTime!) >
+                            const Duration(seconds: 1)) {
+                      lTapTime = cTime;
+                      // Your button action here
+                      debugPrint("Button tapped");
+                    } else {
+                      debugPrint("Double tap detected - ignored");
+                      return;
+                    }
+
                     if (controller.index < 3) {
                       controller.index++;
 
