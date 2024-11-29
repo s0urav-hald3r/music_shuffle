@@ -1,4 +1,4 @@
-package com.example.music_shuffle
+package com.shiftplaylistsong.appverse
 
 import io.flutter.embedding.android.FlutterActivity
 
