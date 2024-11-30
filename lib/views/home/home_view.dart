@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
+import 'package:music_shuffle/utils/extension.dart';
 import 'package:music_shuffle/views/home/custom_navbar.dart';
 import 'package:music_shuffle/views/home/manage_platform_view.dart';
 import 'package:music_shuffle/views/home/settings_view.dart';
@@ -90,7 +91,7 @@ class HomeView extends StatelessWidget {
                           NavigatorKey.push(const CustomNavbar());
                         },
                         child: Container(
-                          height: 100,
+                          height: 100.h,
                           decoration: BoxDecoration(
                             color: const Color(0xFF00D95F),
                             borderRadius: BorderRadius.circular(20),
@@ -121,7 +122,7 @@ class HomeView extends StatelessWidget {
                     const SizedBox(width: 10),
                     Expanded(
                       child: Container(
-                        height: 100,
+                        height: 100.h,
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
                             colors: [Color(0xFFFA233B), Color(0xFFFB5C74)],
@@ -158,7 +159,7 @@ class HomeView extends StatelessWidget {
                   child: Row(children: [
                     Expanded(
                       child: Container(
-                        height: 100,
+                        height: 100.h,
                         decoration: BoxDecoration(
                           color: const Color(0xFFFFFFFF),
                           borderRadius: BorderRadius.circular(20),
@@ -187,7 +188,7 @@ class HomeView extends StatelessWidget {
                     const SizedBox(width: 10),
                     Expanded(
                       child: Container(
-                        height: 100,
+                        height: 100.h,
                         decoration: BoxDecoration(
                           color: const Color(0xFF25D2D9),
                           borderRadius: BorderRadius.circular(20),
