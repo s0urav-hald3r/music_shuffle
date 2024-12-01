@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
 import 'package:music_shuffle/controllers/onboarding_controller.dart';
+import 'package:music_shuffle/utils/local_storage.dart';
 import 'package:music_shuffle/views/home/home_view.dart';
 import 'package:music_shuffle/views/onboarding/select_platform.dart';
 
@@ -228,6 +229,7 @@ class _OnboardingViewState extends State<OnboardingView> {
 
                       pageController.next();
                     } else {
+                      LocalStorage.addData(isOnboardingDone, true);
                       NavigatorKey.pushReplacement(const HomeView());
                     }
                   },

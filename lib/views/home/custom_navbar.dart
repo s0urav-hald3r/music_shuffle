@@ -8,16 +8,17 @@ import 'package:music_shuffle/views/home/liked_view.dart';
 import 'package:music_shuffle/views/home/playlists_view.dart';
 
 class CustomNavbar extends StatelessWidget {
-  const CustomNavbar({super.key});
+  final int index;
+  const CustomNavbar({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(() {
-        return const [
-          PlaylistsView(),
-          LikedView(),
-          AlbumsView()
+        return [
+          PlaylistsView(index: index),
+          const LikedView(),
+          const AlbumsView()
         ][HomeController.instance.index];
       }),
       bottomNavigationBar: BottomAppBar(

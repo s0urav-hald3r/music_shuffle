@@ -8,6 +8,8 @@ import 'package:music_shuffle/config/navigator_key.dart';
 import 'package:music_shuffle/controllers/home_controller.dart';
 import 'package:music_shuffle/controllers/onboarding_controller.dart';
 import 'package:music_shuffle/controllers/youtube_controller.dart';
+import 'package:music_shuffle/utils/local_storage.dart';
+import 'package:music_shuffle/views/home/home_view.dart';
 import 'package:music_shuffle/views/onboarding/onboarding_view.dart';
 
 Future main() async {
@@ -59,7 +61,9 @@ class MyApp extends StatelessWidget {
         ),
       ),
       navigatorKey: NavigatorKey.navigatorKey,
-      home: const OnboardingView(),
+      home: LocalStorage.getData(isOnboardingDone, KeyType.BOOL)
+          ? const HomeView()
+          : const OnboardingView(),
     );
   }
 }

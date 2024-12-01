@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
+import 'package:music_shuffle/controllers/youtube_controller.dart';
 import 'package:music_shuffle/utils/extension.dart';
 import 'package:music_shuffle/views/home/custom_navbar.dart';
 import 'package:music_shuffle/views/home/manage_platform_view.dart';
@@ -87,9 +89,7 @@ class HomeView extends StatelessWidget {
                   child: Row(children: [
                     Expanded(
                       child: InkWell(
-                        onTap: () {
-                          NavigatorKey.push(const CustomNavbar());
-                        },
+                        onTap: () {},
                         child: Container(
                           height: 100.h,
                           decoration: BoxDecoration(
@@ -154,75 +154,91 @@ class HomeView extends StatelessWidget {
                   ]),
                 ),
                 const SizedBox(height: 10),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(children: [
-                    Expanded(
-                      child: Container(
-                        height: 100.h,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFFFFFF),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 10),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CircleAvatar(
-                                radius: 22,
-                                child: Image.asset(youtubeImage),
-                              ),
-                              Text(
-                                'Youtube Music',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                  color: blackColor,
-                                ),
-                              )
-                            ]),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Container(
-                        height: 100.h,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF25D2D9),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 10),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    CircleAvatar(
-                                      radius: 22,
-                                      child: SvgPicture.asset(amazoneSvg),
+                Obx(() {
+                  return SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(children: [
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            if (YoutubeController.instance.isConnected) {
+                              NavigatorKey.push(CustomNavbar(index: 2));
+                            } else {
+                              YoutubeController.instance.authentication();
+                            }
+                          },
+                          child: Container(
+                            height: 100.h,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFFFFFFF),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 10),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 22,
+                                        child: Image.asset(youtubeImage),
+                                      ),
+                                      if (YoutubeController
+                                          .instance.isConnected)
+                                        SvgPicture.asset(link),
+                                    ],
+                                  ),
+                                  Text(
+                                    'Youtube Music',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                      color: blackColor,
                                     ),
-                                    SvgPicture.asset(link),
-                                  ]),
-                              Text(
-                                'Amazone Music',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                  color: blackColor,
-                                ),
-                              )
-                            ]),
+                                  )
+                                ]),
+                          ),
+                        ),
                       ),
-                    ),
-                  ]),
-                ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Container(
+                          height: 100.h,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF25D2D9),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 10),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CircleAvatar(
+                                  radius: 22,
+                                  child: SvgPicture.asset(amazoneSvg),
+                                ),
+                                Text(
+                                  'Amazone Music',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                    color: blackColor,
+                                  ),
+                                )
+                              ]),
+                        ),
+                      ),
+                    ]),
+                  );
+                }),
               ]),
             ),
             Container(

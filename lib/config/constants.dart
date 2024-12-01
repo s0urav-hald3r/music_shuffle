@@ -70,5 +70,7 @@ const String privacyUrl = '';
 const String termsUseUrl = '';
 
 // Local storage constants
+const String isOnboardingDone = 'isOnboardingDone';
+
 const String isYoutubeAuthenticated = 'isYoutubeAuthenticated';
 const String youtubeToken = 'youtubeToken';
