@@ -142,6 +142,12 @@ class SpotifyController extends GetxController {
           _playList.add(SplModel.fromJson(pl));
         }
       } else {
+        isConnected = false;
+        final error = json.decode(response.body);
+        await LocalStorage.addData(isSpotifyAuthenticated, false);
+        await LocalStorage.addData(spotifyAccessToken, '');
+        TPopup.errorSnackbar(message: error['status']);
+        NavigatorKey.pop();
         throw Exception('Failed to fetch playlists: ${response.statusCode}');
       }
     } catch (e) {
