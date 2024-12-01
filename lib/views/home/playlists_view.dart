@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:music_shuffle/components/home/playlist_card.dart';
+import 'package:music_shuffle/components/home/ap_playlist_card.dart';
+import 'package:music_shuffle/components/home/az_playlist_card.dart';
+import 'package:music_shuffle/components/home/s_playlist_card.dart';
+import 'package:music_shuffle/components/home/yt_playlist_card.dart';
 import 'package:music_shuffle/config/constants.dart';
+import 'package:music_shuffle/controllers/spotify_controller.dart';
 import 'package:music_shuffle/controllers/youtube_controller.dart';
 
 class PlaylistsView extends StatefulWidget {
@@ -20,6 +24,8 @@ class _PlaylistsViewState extends State<PlaylistsView> {
   void initState() {
     super.initState();
     switch (widget.index) {
+      case 0:
+        controller = SpotifyController.instance;
       case 2:
         controller = YoutubeController.instance;
       default:
@@ -51,7 +57,18 @@ class _PlaylistsViewState extends State<PlaylistsView> {
         return ListView.builder(
             itemCount: controller.playList.length,
             itemBuilder: (context, index) {
-              return const PlaylistCard();
+              switch (widget.index) {
+                case 0:
+                  return SPlaylistCard(model: controller.playList[index]);
+                case 1:
+                  return const ApPlaylistCard();
+                case 2:
+                  return YtPlaylistCard(model: controller.playList[index]);
+                case 3:
+                  return const AzPlaylistCard();
+                default:
+                  return const SizedBox.shrink();
+              }
             });
       }),
     );

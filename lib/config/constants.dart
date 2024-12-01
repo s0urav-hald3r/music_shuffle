@@ -77,3 +77,4 @@ const String youtubeToken = 'youtubeToken';
 
 const String isSpotifyAuthenticated = 'isSpotifyAuthenticated';
 const String spotifyToken = 'spotifyToken';
+const String spotifyAccessToken = 'spotifyAccessToken';

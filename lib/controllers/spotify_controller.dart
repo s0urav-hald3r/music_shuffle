@@ -6,7 +6,7 @@ import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:get/get.dart';
 import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
-import 'package:music_shuffle/models/ypl_model.dart';
+import 'package:music_shuffle/models/spl_model.dart';
 import 'package:music_shuffle/utils/local_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:music_shuffle/utils/popup.dart';
@@ -24,7 +24,7 @@ class SpotifyController extends GetxController {
   final RxBool _isConnecting = false.obs;
   final RxBool _isConnected = false.obs;
   final RxBool _isFetching = false.obs;
-  final RxList _playList = <YplModel>[].obs;
+  final RxList _playList = <SplModel>[].obs;
 
   // Getters
   bool get isConnecting => _isConnecting.value;
@@ -75,7 +75,10 @@ class SpotifyController extends GetxController {
     }
   }
 
-  Future<String?> getAccessToken(String code) async {
+  Future<String?> getAccessToken() async {
+    String code = LocalStorage.getData(spotifyToken, KeyType.STR);
+    if (code.isEmpty) return null;
+
     final tokenUrl = Uri.parse('https://accounts.spotify.com/api/token');
 
     final response = await http.post(
@@ -93,27 +96,38 @@ class SpotifyController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      final Map<String, dynamic> data = jsonDecode(response.body);
+      final data = jsonDecode(response.body);
       return data['access_token'];
     } else {
       log('Error fetching access token: ${response.body}');
+      isConnected = false;
+      final error = json.decode(response.body);
+      await LocalStorage.addData(isSpotifyAuthenticated, false);
+      await LocalStorage.addData(spotifyToken, '');
+      TPopup.errorSnackbar(message: error['error_description']);
+      NavigatorKey.pop();
       return null;
     }
   }
 
   Future<void> fetchPlaylist() async {
     isFetching = true;
+    String? accessToken = LocalStorage.getData(spotifyAccessToken, KeyType.STR);
+    if ((accessToken ?? '').isEmpty) {
+      accessToken = await getAccessToken();
+      await LocalStorage.addData(spotifyAccessToken, accessToken);
+    }
 
-    String accessToken = LocalStorage.getData(youtubeToken, KeyType.STR);
-    if (accessToken.isEmpty) {
+    if ((accessToken ?? '').isEmpty) {
       isFetching = false;
       return;
     }
 
     try {
-      const String url = 'https://www.googleapis.com/youtube/v3/playlists';
+      final playlistsUrl = Uri.parse('https://api.spotify.com/v1/me/playlists');
+
       final response = await http.get(
-        Uri.parse('$url?part=snippet&mine=true&maxResults=20'),
+        playlistsUrl,
         headers: {
           'Authorization': 'Bearer $accessToken',
         },
@@ -124,17 +138,10 @@ class SpotifyController extends GetxController {
         log('response.statusCode: ${response.statusCode}');
         isFetching = false;
         final data = json.decode(response.body);
-
         for (var pl in data['items']) {
-          _playList.add(YplModel.fromJson(pl));
+          _playList.add(SplModel.fromJson(pl));
         }
       } else {
-        isConnected = false;
-        final error = json.decode(response.body);
-        await LocalStorage.addData(isYoutubeAuthenticated, false);
-        await LocalStorage.addData(youtubeToken, '');
-        TPopup.errorSnackbar(message: error['status']);
-        NavigatorKey.pop();
         throw Exception('Failed to fetch playlists: ${response.statusCode}');
       }
     } catch (e) {

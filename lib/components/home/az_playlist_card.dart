@@ -3,8 +3,8 @@ import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
 import 'package:music_shuffle/views/home/songs_view.dart';
 
-class PlaylistCard extends StatelessWidget {
-  const PlaylistCard({super.key});
+class AzPlaylistCard extends StatelessWidget {
+  const AzPlaylistCard({super.key});
 
   @override
   Widget build(BuildContext context) {
