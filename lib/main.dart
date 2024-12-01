@@ -7,6 +7,7 @@ import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
 import 'package:music_shuffle/controllers/home_controller.dart';
 import 'package:music_shuffle/controllers/onboarding_controller.dart';
+import 'package:music_shuffle/controllers/spotify_controller.dart';
 import 'package:music_shuffle/controllers/youtube_controller.dart';
 import 'package:music_shuffle/utils/local_storage.dart';
 import 'package:music_shuffle/views/home/home_view.dart';
@@ -26,6 +27,7 @@ Future main() async {
   Get.lazyPut(() => OnboardingController());
   Get.lazyPut(() => HomeController());
   Get.put(YoutubeController());
+  Get.put(SpotifyController());
 
   // whenever your initialization is completed, remove the splash screen:
   FlutterNativeSplash.remove();

@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:music_shuffle/components/onboarding/platform_card.dart';
 import 'package:music_shuffle/config/constants.dart';
+import 'package:music_shuffle/controllers/spotify_controller.dart';
 import 'package:music_shuffle/controllers/youtube_controller.dart';
 
 class SelectPlatform extends StatelessWidget {
@@ -88,7 +89,7 @@ class SelectPlatform extends StatelessWidget {
                           child: SvgPicture.asset(spotifyPlatform),
                         ),
                         title: 'Spotify',
-                        action: false
+                        action: SpotifyController.instance.isConnecting
                             ? SizedBox(
                                 width: 32,
                                 height: 32,
@@ -96,21 +97,26 @@ class SelectPlatform extends StatelessWidget {
                                   color: whiteColor,
                                 ),
                               )
-                            : InkWell(
-                                onTap: () {},
-                                child: Container(
-                                  width: 32,
-                                  height: 32,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(color: whiteColor),
+                            : SpotifyController.instance.isConnected
+                                ? const SizedBox.shrink()
+                                : InkWell(
+                                    onTap: () {
+                                      SpotifyController.instance
+                                          .authentication();
+                                    },
+                                    child: Container(
+                                      width: 32,
+                                      height: 32,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(color: whiteColor),
+                                      ),
+                                      child: Center(
+                                        child: SvgPicture.asset(addIcon,
+                                            color: whiteColor),
+                                      ),
+                                    ),
                                   ),
-                                  child: Center(
-                                    child: SvgPicture.asset(addIcon,
-                                        color: whiteColor),
-                                  ),
-                                ),
-                              ),
                       ),
                       Divider(height: 0, thickness: .25, color: whiteColor),
                       PlatformCard(

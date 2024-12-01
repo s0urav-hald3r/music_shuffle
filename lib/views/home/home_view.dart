@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
+import 'package:music_shuffle/controllers/spotify_controller.dart';
 import 'package:music_shuffle/controllers/youtube_controller.dart';
 import 'package:music_shuffle/utils/extension.dart';
 import 'package:music_shuffle/views/home/custom_navbar.dart';
@@ -81,19 +82,72 @@ class HomeView extends StatelessWidget {
                     ),
                   ]),
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-              child: Column(children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(children: [
-                    Expanded(
-                      child: InkWell(
-                        onTap: () {},
+            Obx(() {
+              return Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                child: Column(children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(children: [
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            if (SpotifyController.instance.isConnected) {
+                              NavigatorKey.push(const CustomNavbar(index: 0));
+                            } else {
+                              SpotifyController.instance.authentication();
+                            }
+                          },
+                          child: Container(
+                            height: 100.h,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF00D95F),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 10),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 22,
+                                        backgroundColor: Colors.transparent,
+                                        child: SvgPicture.asset(spotifySvg),
+                                      ),
+                                      if (SpotifyController
+                                          .instance.isConnected)
+                                        SvgPicture.asset(link),
+                                    ],
+                                  ),
+                                  Text(
+                                    'Spotify',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                      color: blackColor,
+                                    ),
+                                  )
+                                ]),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
                         child: Container(
                           height: 100.h,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF00D95F),
+                            gradient: const LinearGradient(
+                              colors: [Color(0xFFFA233B), Color(0xFFFB5C74)],
+                            ),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           padding: const EdgeInsets.symmetric(
@@ -102,60 +156,26 @@ class HomeView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                CircleAvatar(
-                                  radius: 22,
-                                  backgroundColor: Colors.transparent,
-                                  child: SvgPicture.asset(spotifySvg),
+                                SizedBox(
+                                  width: 44,
+                                  height: 44,
+                                  child: SvgPicture.asset(appleSvg),
                                 ),
                                 Text(
-                                  'Spotify',
+                                  'Apple Music',
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w600,
-                                    color: blackColor,
+                                    color: whiteColor,
                                   ),
                                 )
                               ]),
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Container(
-                        height: 100.h,
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [Color(0xFFFA233B), Color(0xFFFB5C74)],
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 10),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: 44,
-                                height: 44,
-                                child: SvgPicture.asset(appleSvg),
-                              ),
-                              Text(
-                                'Apple Music',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                  color: whiteColor,
-                                ),
-                              )
-                            ]),
-                      ),
-                    ),
-                  ]),
-                ),
-                const SizedBox(height: 10),
-                Obx(() {
-                  return SizedBox(
+                    ]),
+                  ),
+                  const SizedBox(height: 10),
+                  SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Row(children: [
                       Expanded(
@@ -237,10 +257,10 @@ class HomeView extends StatelessWidget {
                         ),
                       ),
                     ]),
-                  );
-                }),
-              ]),
-            ),
+                  ),
+                ]),
+              );
+            }),
             Container(
               width: MediaQuery.of(context).size.width,
               height: 54,
