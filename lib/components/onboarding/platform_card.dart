@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:music_shuffle/config/constants.dart';
 
 class PlatformCard extends StatelessWidget {
   final Widget icon;
   final String title;
-  final Function callBack;
+  final Widget action;
   const PlatformCard({
     super.key,
     required this.icon,
     required this.title,
-    required this.callBack,
+    required this.action,
   });
 
   @override
@@ -29,20 +27,7 @@ class PlatformCard extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        InkWell(
-          onTap: () {},
-          child: Container(
-            width: 32,
-            height: 32,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: whiteColor),
-            ),
-            child: Center(
-              child: SvgPicture.asset(addIcon, color: whiteColor),
-            ),
-          ),
-        )
+        action
       ]),
     );
   }

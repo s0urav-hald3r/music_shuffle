@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:music_shuffle/components/onboarding/platform_card.dart';
 import 'package:music_shuffle/config/constants.dart';
+import 'package:music_shuffle/controllers/youtube_controller.dart';
 
 class SelectPlatform extends StatelessWidget {
   const SelectPlatform({super.key});
@@ -68,59 +71,151 @@ class SelectPlatform extends StatelessWidget {
                         )
                       ]),
                 ),
-                Container(
-                  width: size.width,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color(0xFF1E1E1E),
-                  ),
-                  child: Column(children: [
-                    PlatformCard(
-                      icon: CircleAvatar(
-                        radius: 24,
-                        backgroundColor: Colors.transparent,
-                        child: SvgPicture.asset(spotifyPlatform),
-                      ),
-                      title: 'Spotify',
-                      callBack: () {},
+                Obx(() {
+                  return Container(
+                    width: size.width,
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 30),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color(0xFF1E1E1E),
                     ),
-                    Divider(height: 0, thickness: .25, color: whiteColor),
-                    PlatformCard(
-                      icon: CircleAvatar(
-                        radius: 24,
-                        backgroundColor: Colors.transparent,
-                        child: Image.asset(appleImage),
+                    child: Column(children: [
+                      PlatformCard(
+                        icon: CircleAvatar(
+                          radius: 24,
+                          backgroundColor: Colors.transparent,
+                          child: SvgPicture.asset(spotifyPlatform),
+                        ),
+                        title: 'Spotify',
+                        action: false
+                            ? SizedBox(
+                                width: 32,
+                                height: 32,
+                                child: CupertinoActivityIndicator(
+                                  color: whiteColor,
+                                ),
+                              )
+                            : InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  width: 32,
+                                  height: 32,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(color: whiteColor),
+                                  ),
+                                  child: Center(
+                                    child: SvgPicture.asset(addIcon,
+                                        color: whiteColor),
+                                  ),
+                                ),
+                              ),
                       ),
-                      title: 'Apple Music',
-                      callBack: () {},
-                    ),
-                    Divider(height: 0, thickness: .25, color: whiteColor),
-                    PlatformCard(
-                      icon: CircleAvatar(
-                        radius: 24,
-                        backgroundColor: Colors.transparent,
-                        child: Image.asset(youtubeImage),
+                      Divider(height: 0, thickness: .25, color: whiteColor),
+                      PlatformCard(
+                        icon: CircleAvatar(
+                          radius: 24,
+                          backgroundColor: Colors.transparent,
+                          child: Image.asset(appleImage),
+                        ),
+                        title: 'Apple Music',
+                        action: false
+                            ? SizedBox(
+                                width: 32,
+                                height: 32,
+                                child: CupertinoActivityIndicator(
+                                  color: whiteColor,
+                                ),
+                              )
+                            : InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  width: 32,
+                                  height: 32,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(color: whiteColor),
+                                  ),
+                                  child: Center(
+                                    child: SvgPicture.asset(addIcon,
+                                        color: whiteColor),
+                                  ),
+                                ),
+                              ),
                       ),
-                      title: 'Youtube Music',
-                      callBack: () {},
-                    ),
-                    Divider(height: 0, thickness: .25, color: whiteColor),
-                    PlatformCard(
-                      icon: CircleAvatar(
-                        radius: 24,
-                        backgroundColor: const Color(0xFF25D2D9),
-                        child: CircleAvatar(
-                            radius: 18,
-                            backgroundColor: Colors.transparent,
-                            child: SvgPicture.asset(amazonePlatform)),
+                      Divider(height: 0, thickness: .25, color: whiteColor),
+                      PlatformCard(
+                        icon: CircleAvatar(
+                          radius: 24,
+                          backgroundColor: Colors.transparent,
+                          child: Image.asset(youtubeImage),
+                        ),
+                        title: 'Youtube Music',
+                        action: YoutubeController.instance.isConnecting
+                            ? SizedBox(
+                                width: 32,
+                                height: 32,
+                                child: CupertinoActivityIndicator(
+                                  color: whiteColor,
+                                ),
+                              )
+                            : InkWell(
+                                onTap: () {
+                                  YoutubeController.instance.authentication();
+                                },
+                                child: Container(
+                                  width: 32,
+                                  height: 32,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(color: whiteColor),
+                                  ),
+                                  child: Center(
+                                    child: SvgPicture.asset(addIcon,
+                                        color: whiteColor),
+                                  ),
+                                ),
+                              ),
                       ),
-                      title: 'Amazone Music',
-                      callBack: () {},
-                    )
-                  ]),
-                )
+                      Divider(height: 0, thickness: .25, color: whiteColor),
+                      PlatformCard(
+                        icon: CircleAvatar(
+                          radius: 24,
+                          backgroundColor: const Color(0xFF25D2D9),
+                          child: CircleAvatar(
+                              radius: 18,
+                              backgroundColor: Colors.transparent,
+                              child: SvgPicture.asset(amazonePlatform)),
+                        ),
+                        title: 'Amazone Music',
+                        action: false
+                            ? SizedBox(
+                                width: 32,
+                                height: 32,
+                                child: CupertinoActivityIndicator(
+                                  color: whiteColor,
+                                ),
+                              )
+                            : InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  width: 32,
+                                  height: 32,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(color: whiteColor),
+                                  ),
+                                  child: Center(
+                                    child: SvgPicture.asset(addIcon,
+                                        color: whiteColor),
+                                  ),
+                                ),
+                              ),
+                      )
+                    ]),
+                  );
+                })
               ]),
             )),
           ],

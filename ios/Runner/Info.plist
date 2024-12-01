@@ -22,6 +22,20 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<!-- Add your URL scheme here -->
+				<string>com.googleusercontent.apps.847940954396-ullfbt8f6e7pd73eu74aepssegcep689</string>
+			</array>
+		</dict>
+	</array>
+	<key>GIDClientID</key>
+	<string>847940954396-ullfbt8f6e7pd73eu74aepssegcep689</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
