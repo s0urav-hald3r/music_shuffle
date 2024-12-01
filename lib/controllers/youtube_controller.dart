@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
+import 'package:music_shuffle/models/ypl_model.dart';
 import 'package:music_shuffle/utils/local_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:music_shuffle/utils/popup.dart';
@@ -22,16 +23,19 @@ class YoutubeController extends GetxController {
   final RxBool _isConnecting = false.obs;
   final RxBool _isConnected = false.obs;
   final RxBool _isFetching = false.obs;
+  final RxList _playList = <YplModel>[].obs;
 
   // Getters
   bool get isConnecting => _isConnecting.value;
   bool get isConnected => _isConnected.value;
   bool get isFetching => _isFetching.value;
+  List get playList => _playList;
 
   // Setters
   set isConnecting(value) => _isConnecting.value = value;
   set isConnected(value) => _isConnected.value = value;
   set isFetching(value) => _isFetching.value = value;
+  set playList(value) => _playList.value = value;
 
   /// [Authentication]
   final GoogleSignIn googleSignIn = GoogleSignIn(
@@ -85,10 +89,14 @@ class YoutubeController extends GetxController {
       );
 
       if (response.statusCode == 200) {
+        _playList.clear();
         log('response.statusCode: ${response.statusCode}');
         isFetching = false;
         final data = json.decode(response.body);
-        log(data['items']);
+
+        for (var pl in data['items']) {
+          _playList.add(YplModel.fromJson(pl));
+        }
       } else {
         isConnected = false;
         final error = json.decode(response.body);

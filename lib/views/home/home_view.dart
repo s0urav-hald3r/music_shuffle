@@ -162,7 +162,7 @@ class HomeView extends StatelessWidget {
                         child: InkWell(
                           onTap: () {
                             if (YoutubeController.instance.isConnected) {
-                              NavigatorKey.push(CustomNavbar(index: 2));
+                              NavigatorKey.push(const CustomNavbar(index: 2));
                             } else {
                               YoutubeController.instance.authentication();
                             }
