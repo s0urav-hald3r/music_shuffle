@@ -68,3 +68,7 @@ const String shareText =
     'Look what I use to track all my parcels in one place:\nhttps://apps.apple.com/app/id6738089871';
 const String privacyUrl = '';
 const String termsUseUrl = '';
+
+// Local storage constants
+const String isYoutubeAuthenticated = 'isYoutubeAuthenticated';
+const String youtubeToken = 'youtubeToken';

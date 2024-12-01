@@ -23,7 +23,7 @@ Future main() async {
   // Dependency injection
   Get.lazyPut(() => OnboardingController());
   Get.lazyPut(() => HomeController());
-  Get.lazyPut(() => YoutubeController());
+  Get.put(YoutubeController());
 
   // whenever your initialization is completed, remove the splash screen:
   FlutterNativeSplash.remove();

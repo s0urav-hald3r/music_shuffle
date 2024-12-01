@@ -160,23 +160,26 @@ class SelectPlatform extends StatelessWidget {
                                   color: whiteColor,
                                 ),
                               )
-                            : InkWell(
-                                onTap: () {
-                                  YoutubeController.instance.authentication();
-                                },
-                                child: Container(
-                                  width: 32,
-                                  height: 32,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(color: whiteColor),
+                            : YoutubeController.instance.isConnected
+                                ? const SizedBox.shrink()
+                                : InkWell(
+                                    onTap: () {
+                                      YoutubeController.instance
+                                          .authentication();
+                                    },
+                                    child: Container(
+                                      width: 32,
+                                      height: 32,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(color: whiteColor),
+                                      ),
+                                      child: Center(
+                                        child: SvgPicture.asset(addIcon,
+                                            color: whiteColor),
+                                      ),
+                                    ),
                                   ),
-                                  child: Center(
-                                    child: SvgPicture.asset(addIcon,
-                                        color: whiteColor),
-                                  ),
-                                ),
-                              ),
                       ),
                       Divider(height: 0, thickness: .25, color: whiteColor),
                       PlatformCard(
