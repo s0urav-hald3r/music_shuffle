@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
+import 'package:music_shuffle/controllers/apple_controller.dart';
 import 'package:music_shuffle/controllers/spotify_controller.dart';
 import 'package:music_shuffle/controllers/youtube_controller.dart';
 import 'package:music_shuffle/utils/extension.dart';
@@ -142,34 +143,52 @@ class HomeView extends StatelessWidget {
                       ),
                       const SizedBox(width: 10),
                       Expanded(
-                        child: Container(
-                          height: 100.h,
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [Color(0xFFFA233B), Color(0xFFFB5C74)],
+                        child: InkWell(
+                          onTap: () {
+                            if (AppleController.instance.isConnected) {
+                              NavigatorKey.push(const CustomNavbar(index: 1));
+                            } else {}
+                          },
+                          child: Container(
+                            height: 100.h,
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFFFA233B), Color(0xFFFB5C74)],
+                              ),
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 10),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width: 44,
-                                  height: 44,
-                                  child: SvgPicture.asset(appleSvg),
-                                ),
-                                Text(
-                                  'Apple Music',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600,
-                                    color: whiteColor,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 10),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        width: 44,
+                                        height: 44,
+                                        child: SvgPicture.asset(appleSvg),
+                                      ),
+                                      if (AppleController.instance.isConnected)
+                                        SvgPicture.asset(link),
+                                    ],
                                   ),
-                                )
-                              ]),
+                                  Text(
+                                    'Apple Music',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                      color: whiteColor,
+                                    ),
+                                  )
+                                ]),
+                          ),
                         ),
                       ),
                     ]),

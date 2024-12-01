@@ -75,6 +75,9 @@ const String isOnboardingDone = 'isOnboardingDone';
 const String isYoutubeAuthenticated = 'isYoutubeAuthenticated';
 const String youtubeToken = 'youtubeToken';
 
+const String isAppleAuthenticated = 'isAppleAuthenticated';
+const String appleToken = 'appleToken';
+
 const String isSpotifyAuthenticated = 'isSpotifyAuthenticated';
 const String spotifyToken = 'spotifyToken';
 const String spotifyAccessToken = 'spotifyAccessToken';
