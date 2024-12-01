@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:music_shuffle/config/constants.dart';
 import 'package:music_shuffle/config/navigator_key.dart';
@@ -27,8 +28,8 @@ class YtPlaylistCard extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             child: model.snippet?.thumbnails?.maxres?.url == null
                 ? Image.asset(albumArt)
-                : Image.network(
-                    model.snippet!.thumbnails!.maxres!.url!,
+                : CachedNetworkImage(
+                    imageUrl: model.snippet!.thumbnails!.maxres!.url!,
                     fit: BoxFit.cover,
                   ),
           ),
